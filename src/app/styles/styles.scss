@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@400;700&display=swap");
+
+$pink: #f2c2cf;
+$purple: #976fbf;
+$darkPurple: #2e3559;
+$green: #038c7f;
+$red: #f26d6d;
+$grey: #8e8e90;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+// Icons
+
+.grey {
+    color: $grey;
+}
+.icon-purple {
+    color: $darkPurple;
+    cursor: pointer;
+    transition: color 0.25s ease;
+    &:hover {
+        color: $green;
+    }
+}
+
+.icon-inactive {
+    color: $grey !important;
+    cursor: default;
+}
+
+.icon-med {
+    font-size: 32px;
+}
+
+// End of icons
+html {
+    background-color: $pink;
+}
+
+section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.section-content {
+    border: 1px solid $darkPurple;
+    padding: 32px;
+    width: 100%;
+}
+
+// Laptop view, base px 21, multiplier of 1.13
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Roboto;
+    color: $darkPurple;
+}
+
+p {
+    font-family: Nunito;
+    color: $darkPurple;
+}
+
+html {
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 2.082rem;
+}
+
+h2 {
+    font-size: 1.842rem;
+}
+
+h3 {
+    font-size: 1.63rem;
+}
+
+h4 {
+    font-size: 1.443rem;
+}
+
+h5 {
+    font-size: 1.277rem;
+}
+
+h6 {
+    font-size: 1.13rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+.small {
+    font-size: 0.885rem;
+}
+
+.tiny {
+    font-size: 0.783rem;
+}
+
+// Tablet view, base px 18, multiplier of 1.25
+@media only screen and (max-width: 601px) and (max-width: 1200px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+// Margins
+
+.mar-bottom-8 {
+    margin-bottom: 8px;
+}
+
+.mar-bottom-16 {
+    margin-bottom: 16px;
+}
+
+.mar-bottom-32 {
+    margin-bottom: 32px;
+}
+
+.mar-bottom-64 {
+    margin-bottom: 64px;
+}
+
+.mar-right-8 {
+    margin-right: 8px;
+}
+
+.mar-right-16 {
+    margin-right: 16px;
+}
+
+.mar-right-32 {
+    margin-right: 32px;
+}
+
+.mar-left-8 {
+    margin-right: 8px;
+}
+
+.mar-left-16 {
+    margin-right: 16px;
+}
+
+.mar-left-32 {
+    margin-right: 32px;
+}
+
+// Flex
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-inline {
+    display: inline-flex;
+}
+
+.flex-row {
+    flex-direction: row !important;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.flex-one {
+    flex: 1;
+}
+
+.flex-no-shrink {
+    flex-shrink: 0;
+}
+
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.flex-start {
+    justify-content: flex-start;
+}
+
+.flex-end {
+    justify-content: flex-end !important;
+}
+
+.row {
+    flex-direction: column;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center !important;
+}
+
+.justify-start {
+    justify-content: flex-start !important;
+}
+
+.align-center {
+    align-items: center;
+}
