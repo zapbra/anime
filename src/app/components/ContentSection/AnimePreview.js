@@ -11,6 +11,7 @@ const Cont = styled.div`
     cursor: pointer;
     &:hover {
         text-decoration: underline;
+        text-decoration-color: ${props=> props.colors.darkPurple};
         img {
             opacity: 0.9;
         }

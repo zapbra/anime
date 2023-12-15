@@ -20,14 +20,14 @@ const Render = ({ data }) => {
     return (
         <Cont colors={COLORS}>
             {" "}
-            <ContentSection
-                title={"ANIME"}
-                data={data.data.AnimeSearch.media}
-            />{" "}
-            <ContentSection
-                title={"MANGA"}
-                data={data.data.MangaSearch.media}
-            />
+            {/*<ContentSection*/}
+            {/*    title={"ANIME"}*/}
+            {/*    data={data.data.AnimeSearch.media}*/}
+            {/*/>{" "}*/}
+            {/*<ContentSection*/}
+            {/*    title={"MANGA"}*/}
+            {/*    data={data.data.MangaSearch.media}*/}
+            {/*/>*/}
             <CharacterPreview
                 title={"CHARACTER"}
                 data={data.data.CharacterSearch.characters}

@@ -1,12 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@400;700&display=swap");
 
 $pink: #f2c2cf;
+$lightPink: #f8e1e7;
 $purple: #976fbf;
 $darkPurple: #2e3559;
 $green: #038c7f;
 $red: #f26d6d;
 $grey: #8e8e90;
 
+
+
+li {
+    margin-left: 16px;
+}
 * {
     margin: 0;
     padding: 0;
@@ -16,11 +22,18 @@ $grey: #8e8e90;
 html {
     scroll-behavior: smooth;
 }
-// Icons
 
-.grey {
-    color: $grey;
+a {
+    text-decoration: none;
 }
+
+.default-page {
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
 .icon-purple {
     color: $darkPurple;
     cursor: pointer;
@@ -30,16 +43,45 @@ html {
     }
 }
 
+.icon-rotate {
+    transform: rotate(90deg);
+}
+
+// Navbar
+.navbar {
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+// End of navbar
+
+// Icons
 .icon-inactive {
     color: $grey !important;
     cursor: default;
+}
+
+
+.icon-sm {
+    font-size: 24px;
 }
 
 .icon-med {
     font-size: 32px;
 }
 
+.grey {
+    color: $grey;
+}
+
+.red {
+    color: $red;
+}
+
+
 // End of icons
+
 html {
     background-color: $pink;
 }
@@ -230,4 +272,8 @@ p {
 
 .align-center {
     align-items: center;
+}
+
+.bold {
+    font-weight: bold;
 }

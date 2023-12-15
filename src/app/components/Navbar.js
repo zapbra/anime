@@ -1,14 +1,18 @@
-import React from "react";
-import styled from "styled-components";
-import COLORS from "../data/colors";
-
-const Cont = styled.div``;
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <Cont colors={COLORS}>
-      <div> dasd </div>
-    </Cont>
+    <header class = 'navbar'>
+        <Link href="/">
+            <div className = 'flex align-center'>
+                <img src="images/anime-logo.png" alt="Anime logo" className = 'mar-right-8'/>
+                <h4>
+                    Anime
+                </h4>
+            </div>
+
+        </Link>
+    </header>
   );
 };
 

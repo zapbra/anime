@@ -8,7 +8,7 @@ query ($id: Int) {
         large
       }
       gender
-      
+      description
       dateOfBirth {
         year
         month
