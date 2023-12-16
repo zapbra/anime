@@ -2,6 +2,7 @@
 
 $pink: #f2c2cf;
 $lightPink: #f8e1e7;
+$superLightPink: #fdf1f3;
 $purple: #976fbf;
 $darkPurple: #2e3559;
 $green: #038c7f;
@@ -10,9 +11,12 @@ $grey: #8e8e90;
 
 
 .content-box {
-    background-color: $lightPink;
+    background-color: $superLightPink;
     padding: 16px;
-
+    .text-content {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
 }
 
 .black-line {

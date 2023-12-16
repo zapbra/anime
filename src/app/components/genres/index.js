@@ -7,6 +7,7 @@ import Genre from './Genre';
 const Cont = styled.div`
     background-color: ${props => props.colors.lightPink};
     padding: 8px 16px;
+    
 `;
 
 const Genres = ({genreList}) => {
@@ -20,6 +21,7 @@ const Genres = ({genreList}) => {
     });
     return (
         <Cont colors = {COLORS}>
+            <h5 className='mar-bottom-8'>Genres</h5>
             {genreElems}
         </Cont>
     )

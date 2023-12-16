@@ -5,8 +5,9 @@ import COLORS from "@/app/data/colors";
 const Cont = styled.div`
     background-color: ${props => props.colors.lightPink};
     padding: 8px 16px;
-    max-width: 120px;
+    
     width: 100%;
+    
     .rating-bar {
         position: relative;
         width: 100%;
@@ -14,10 +15,18 @@ const Cont = styled.div`
         background-color: ${props => props.colors.lightGrey};
     }
     .rating-percent {
-        
         height: 100%;
         position: absolute;
-        
+      
+    }
+    
+    .percent-text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        color: ${props => props.colors.lightPink};
     }
 `;
 
@@ -47,7 +56,13 @@ const Rating = ({ percent }) => {
         <Cont colors = {COLORS}>
             <h5 className='mar-bottom-8'>Rating</h5>
             <div className="rating-bar">
-                <div className="rating-percent" style={{width: `${percent}%`, background: `linear-gradient(${colors.background.color1}, ${colors.background.color2})`}}></div>
+                <p className='small percent-text'>{percent}%</p>
+                <div className="rating-percent" style={{
+                    width: `${percent}%`,
+                    background: `linear-gradient(${colors.background.color1}, ${colors.background.color2})`
+                }}>
+
+                </div>
             </div>
         </Cont>
     )

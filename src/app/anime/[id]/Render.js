@@ -26,15 +26,18 @@ const Cont = styled.div`
         
     }
     
-    .text-section {
-        background-color: ${props => props.colors.lightPink};
-        padding: 16px;
+
+    .header-content {
+        @media  only screen and (max-width: 600px) {
+            flex-direction: column;
+        }
+        @media  only screen and (max-width: 600px) {
+            .left-header {
+                flex-direction: column;
+            }
+            
+        }
     }
-    .text-content {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-    
     .header-text-section {
         padding: 16px;
     }
@@ -68,10 +71,10 @@ const Anime = ({ anime }) => {
             </div>
 
 
-            <div className="flex space-between mar-bottom-32">
+            <div className="header-content flex space-between mar-bottom-32">
 
                 {/** Left header section **/}
-                <div className="flex space-between">
+                <div className="left-header flex space-between">
                     <div className="image-holder">
                         <img src = {anime.coverImage.extraLarge} alt = {anime.title.userPreferred} fill style = {{objectFit:'cover'}}/>
                     </div>
@@ -122,8 +125,8 @@ const Anime = ({ anime }) => {
                 {/** End of left header section **/}
 
                 {/** Right header section **/}
-                <div>
-                    <div className="mar-bottom-16">
+                <div className=''>
+                    <div className="mar-bottom-16 ">
                         <Rating
                             percent={anime.averageScore}
                         />
@@ -137,7 +140,7 @@ const Anime = ({ anime }) => {
                 {/** End of right header section **/}
             </div>
 
-            <div className="text-section mar-bottom-32">
+            <div className="content-box mar-bottom-32">
                 <div className="text-content">
                     <h2>About This Anime</h2>
                     <div className="black-line mar-bottom-16"></div>
@@ -149,11 +152,16 @@ const Anime = ({ anime }) => {
             </div>
 
             <div className="content-box">
-                <h2>Episodes</h2>
-                <div className="black-line mar-bottom-16"></div>
-                <EpisodeSection
-                    episodes={anime.streamingEpisodes}
-                />
+                <div className="text-content">
+                    <h2>Episodes</h2>
+                    <div className="black-line mar-bottom-16"></div>
+
+
+                    <EpisodeSection
+                        episodes={anime.streamingEpisodes}
+                    />
+                </div>
+
             </div>
         </Cont>
     )
