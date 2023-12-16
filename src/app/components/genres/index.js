@@ -10,10 +10,11 @@ const Cont = styled.div`
 `;
 
 const Genres = ({genreList}) => {
-    const genreElems = genreList.map(genre => {
+    const genreElems = genreList.map(((genre, index) => {
         return (
             <Genre
                 genre = {genre}
+                key = {index}
             />
         )
     });
