@@ -9,6 +9,17 @@ $red: #f26d6d;
 $grey: #8e8e90;
 
 
+.content-box {
+    background-color: $lightPink;
+    padding: 16px;
+
+}
+
+.black-line {
+    width: 100%;
+    height: 1px;
+    background-color: $darkPurple;
+}
 
 li {
     margin-left: 16px;
@@ -31,6 +42,9 @@ a {
     padding: 32px;
     max-width: 1200px;
     margin: 0 auto;
+    @media only screen and (max-width: 600px) {
+        padding: 16px;
+    }
 }
 
 
@@ -67,6 +81,10 @@ a {
     font-size: 24px;
 }
 
+.icon-ssm {
+    font-size: 20px;
+}
+
 .icon-med {
     font-size: 32px;
 }
@@ -81,6 +99,24 @@ a {
 
 
 // End of icons
+
+
+.styled-table {
+
+    tr {
+        td {
+            padding: 8px;
+        }
+        td:nth-of-type(1) {
+            display: flex;
+            align-items: center;
+            & > *:nth-of-type(1) {
+                margin-right: 8px;
+                color: $grey;
+            }
+        }
+    }
+}
 
 html {
     background-color: $pink;

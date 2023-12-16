@@ -28,12 +28,14 @@ const Cont = styled.div`
 
 const Return = () => {
     return (
-        <Link href={'/'}>
-            <Cont colors = {COLORS} >
-                <FaArrowTurnDown className='icon-sm icon-rotate mar-right-8'/>
-                <h5>Back To Home</h5>
-            </Cont>
-        </Link>
+        <div className="mar-bottom-16">
+            <Link href={'/'}>
+                <Cont colors = {COLORS} >
+                    <FaArrowTurnDown className='icon-sm icon-rotate mar-right-8'/>
+                    <h5>Back To Home</h5>
+                </Cont>
+            </Link>
+        </div>
     )
 };
 

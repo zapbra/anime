@@ -34,6 +34,8 @@ const ContentSection = ({ data, title }) => {
                 <AnimePreview
                     title={animeTitles[i].title.english}
                     img={animeTitles[i].coverImage.large}
+                    id = {animeTitles[i].id}
+                    type = 'anime'
                 />
             );
         }
@@ -46,8 +48,7 @@ const ContentSection = ({ data, title }) => {
         setAnimeTitleElems(renderPreviews);
     }, [renderLength]);
 
-    console.log("data");
-    console.log(data);
+
 
     const shiftPage = (dir) => {
         let scrollState = false;

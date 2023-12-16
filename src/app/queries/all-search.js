@@ -26,8 +26,7 @@ query ($query: String) {
       characters(search: $query, sort:FAVOURITES_DESC) {
         id
         name {
-          first
-          last
+          full
         }
         image {
           large

@@ -24,11 +24,13 @@ const ContentSection = ({ data, title }) => {
     // all fetched anime titles
     const [animeTitles, setAnimeTitles] = useState(data);
     const [renderLength, setRenderLength] = useState(RENDER_ITERATOR);
-
+    console.log('chars');
+    console.log(data);
     // returns an array of all the objects to render (character, anime, etc)
     // returns the indexes based on render_iterator offest. Ex. 25-50
     const renderPreviews = () => {
         const animeArr = [];
+
         // renders up to renderLength amount minus RENDER_ITERATOR offset
         for (let i = renderLength - RENDER_ITERATOR; i < renderLength; i++) {
             console.log('hello');
@@ -36,12 +38,11 @@ const ContentSection = ({ data, title }) => {
             animeArr.push(
                 <AnimePreview
                     title={
-                        animeTitles[i].name.first +
-                            " " +
-                            animeTitles[i].name.last || ""
+                        animeTitles[i].name.full
                     }
                     img={animeTitles[i].image.large}
                     id = {animeTitles[i].id}
+                    type = 'character'
                 />
             );
         }

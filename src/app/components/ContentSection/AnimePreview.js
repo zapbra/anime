@@ -18,9 +18,9 @@ const Cont = styled.div`
     }
 `;
 
-const AnimePreview = ({ title, img, id }) => {
+const AnimePreview = ({ title, img, id, type }) => {
     return (
-        <Link href={`character/${id}`}>
+        <Link href={`${type}/${id}`}>
             <Cont colors={COLORS}>
                 <Image
                     alt={title}

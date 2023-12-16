@@ -1,8 +1,10 @@
 import { ALL_CHARACTERS_QUERY } from "../queries/all-characters";
 import { ALL_SEARCH_QUERY } from "../queries/all-search";
 import { CHARACTER_QUERY } from "../queries/character";
-// return a list of all media
+import { ANIME_QUERY } from "@/app/queries/anime";
 
+
+// return a list of all media
 export const getAllMedia = async () => {
     return await fetchDefault(ALL_SEARCH_QUERY);
 };
@@ -18,6 +20,14 @@ export const getCharacter = async (variables) => {
     return await fetchWithVar(CHARACTER_QUERY, variables);
 };
 
+// return a single anime based on id
+// takes in object {id: Int}
+export const getAnime = async (variables) => {
+    return await fetchWithVar(ANIME_QUERY, variables);
+}
+
+
+// sends a request to the api with a specified query and returns the result
 const fetchDefault = async (query) => {
     const url = "https://graphql.anilist.co",
         options = {
@@ -41,6 +51,7 @@ const fetchDefault = async (query) => {
     }
 };
 
+// sends a request to the api with specific query and variables and returns the result
 const fetchWithVar = async (query, variables) => {
     const url = "https://graphql.anilist.co",
         options = {

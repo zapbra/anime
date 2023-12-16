@@ -15,6 +15,11 @@ const Cont = styled.div`
         text-decoration: underline;
         text-decoration-color: inherit;     
     }
+    @media only screen and (max-width: 600px) {
+        padding-left: 0;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
 }
     .text-cont {
         padding: 16px;
@@ -36,7 +41,7 @@ const Render = ({ data }) => {
     return <Cont colors={COLORS} className='default-page'>
         <Return />
         <Favorites favoriteCount={character.favourites}/>
-        <div className='flex'>
+        <div className='flex flex-wrap'>
             <Image
                 src={character.image.large}
                 width={230}

@@ -4,8 +4,7 @@ query  {
       characters {
         id
         name {
-          first
-          last
+          full
         }
         image {
           medium

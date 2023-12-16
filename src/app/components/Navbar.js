@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <header class = 'navbar'>
+    <header className = 'navbar'>
         <Link href="/">
             <div className = 'flex align-center'>
                 <img src="images/anime-logo.png" alt="Anime logo" className = 'mar-right-8'/>
