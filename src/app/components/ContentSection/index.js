@@ -35,7 +35,7 @@ const ContentSection = ({ data, title }) => {
                     title={animeTitles[i].title.english}
                     img={animeTitles[i].coverImage.large}
                     id = {animeTitles[i].id}
-                    type = 'anime'
+                    type = {title.toLowerCase()}
                 />
             );
         }

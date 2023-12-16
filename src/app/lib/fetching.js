@@ -2,6 +2,7 @@ import { ALL_CHARACTERS_QUERY } from "../queries/all-characters";
 import { ALL_SEARCH_QUERY } from "../queries/all-search";
 import { CHARACTER_QUERY } from "../queries/character";
 import { ANIME_QUERY } from "@/app/queries/anime";
+import {MANGA_QUERY} from "@/app/queries/manga";
 
 
 // return a list of all media
@@ -26,6 +27,11 @@ export const getAnime = async (variables) => {
     return await fetchWithVar(ANIME_QUERY, variables);
 }
 
+// return a single manga based on id
+// takes in object {id: Int}
+export const getManga = async (variables) => {
+    return await fetchWithVar(MANGA_QUERY, variables);
+};
 
 // sends a request to the api with a specified query and returns the result
 const fetchDefault = async (query) => {
