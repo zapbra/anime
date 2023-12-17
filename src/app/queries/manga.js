@@ -3,11 +3,11 @@ export const MANGA_QUERY = `query ($id: Int!) {
     Media(id:$id, type: MANGA) {
         id
         description
-    \t\tvolumes
-    \t\t
-    \t\tcharacters {
-    \t\t  edges {
-    \t\t    node {
+        volumes
+        
+        characters {
+          edges {
+            node {
               id
               name {
                full
@@ -18,13 +18,13 @@ export const MANGA_QUERY = `query ($id: Int!) {
               }
             }
             
-    \t\t  }
-    \t\t}
-    \t\ttrailer {
-    \t\t  id
+          }
+        }
+        trailer {
+          id
           site
           thumbnail
-    \t\t}
+        }
         coverImage {
             extraLarge
         } 
