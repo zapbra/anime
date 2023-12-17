@@ -42,6 +42,7 @@ const Render = ({ data }) => {
     const mediaElements = character.media.edges.map((media, index) => {
        return (
            <MediaPreview
+               key = {index}
                media = {media.node}
            />
        )
