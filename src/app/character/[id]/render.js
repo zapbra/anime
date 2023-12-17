@@ -7,6 +7,8 @@ import {FaMars, FaVenus, FaChild} from 'react-icons/fa6';
 import Favorites from "@/app/components/Favorites";
 import ReactCommonmark from "react-commonmark";
 import Return from "@/app/components/Return";
+import MediaPreview from "@/app/components/MediaPreview";
+
 
 const Cont = styled.div`
 .character-text {
@@ -36,9 +38,18 @@ const Cont = styled.div`
 
 const Render = ({ data }) => {
     const [character, setCharacter] = useState(data.data.Character);
-    console.log('character');
-    console.log(character);
-    return <Cont colors={COLORS} className='default-page'>
+
+    const mediaElements = character.media.edges.map((media, index) => {
+       return (
+           <MediaPreview
+               media = {media.node}
+           />
+       )
+    });
+
+
+    return (
+        <Cont colors={COLORS} className='default-page'>
         <Return />
         <Favorites favoriteCount={character.favourites}/>
         <div className='flex flex-wrap'>
@@ -69,12 +80,29 @@ const Render = ({ data }) => {
 
 
         </div>
-        <div className = 'text-cont'>
-            <ReactCommonmark
-                source = {character.description}
-            />
+        <div className = 'content-box mar-bottom-32'>
+            <div className="text-content">
+                <h2>About {character.name.full}</h2>
+                <div className="black-line mar-bottom-16"></div>
+                <ReactCommonmark
+                    source={character.description}
+                />
+            </div>
+
         </div>
-    </Cont>;
+
+        <div className="content-box">
+            <div className="text-content">
+            <h2>Featured In</h2>
+                <div className="black-line mar-bottom-16"></div>
+
+                <div className="flex flex-wrap space-around">
+                    {mediaElements}
+                </div>
+            </div>
+        </div>
+    </Cont>
+    )
 };
 
 export default Render;

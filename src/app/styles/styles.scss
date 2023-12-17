@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@400;700&display=swap");
+@import './buttons.scss';
 
 $pink: #f2c2cf;
 $lightPink: #f8e1e7;
@@ -9,6 +10,24 @@ $green: #038c7f;
 $red: #f26d6d;
 $grey: #8e8e90;
 
+
+input {
+    border: 1px solid $grey;
+    background-color: $lightPink;
+    padding: 8px 8px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: $darkPurple;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    &:not(:placeholder-shown) {
+        background-color: #fff;
+    }
+    &:focus {
+        outline: none;
+    }
+}
 
 .content-box {
     background-color: $superLightPink;
@@ -135,6 +154,12 @@ section {
     border: 1px solid $darkPurple;
     padding: 32px;
     width: 100%;
+    @media  only screen and (max-width: 600px) {
+        padding: 16px;
+    }
+    @media  only screen and (max-width: 300px) {
+        padding: 8px;
+    }
 }
 
 // Laptop view, base px 21, multiplier of 1.13

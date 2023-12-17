@@ -5,6 +5,9 @@ import COLORS from "@/app/data/colors";
 
 const Cont = styled.div`
     max-width: 100px;
+    margin-right: 8px;
+    margin-bottom: 16px;
+    align-self: start;
     &:hover {
         p.bold {
             text-decoration: underline;
@@ -16,6 +19,8 @@ const Cont = styled.div`
     img {
         width: 100px;
         height: 150px;
+        object-fit: contain;
+        object-position: top;
     }
 `;
 
@@ -24,7 +29,6 @@ const Character = ({ character }) => {
     return (
         <Cont colors={COLORS}>
             <Link href = {`/character/${character.id}`}>
-
 
                 <img src={character.image.medium} alt={character.name.full}/>
                 <p className='bold'>

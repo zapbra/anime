@@ -1,0 +1,30 @@
+$pink: #f2c2cf;
+$lightPink: #f8e1e7;
+$superLightPink: #fdf1f3;
+$purple: #976fbf;
+$darkPurple: #2e3559;
+$green: #038c7f;
+$red: #f26d6d;
+$grey: #8e8e90;
+
+.button {
+  padding: 4px 8px;
+  border-radius: 16px;
+  background-color: $darkPurple;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  h5 {
+    color: $lightPink;
+  }
+
+  &:hover {
+    h5 {
+      color: $superLightPink;
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}

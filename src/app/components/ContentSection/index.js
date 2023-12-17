@@ -133,7 +133,7 @@ const ContentSection = ({ data, title }) => {
                 </h1>
                 <div className="section-content ">
                     {/* Title elements */}
-                    <div className="flex flex-wrap space-around ">
+                    <div className="flex flex-wrap space-around content-holder">
                         {animeTitleElems}
                     </div>
                     {/* End of title elements */}

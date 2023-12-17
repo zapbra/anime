@@ -165,18 +165,17 @@ const Render = ({ manga }) => {
 
             </div>
 
+            {/** Characters **/}
             <div className="content-box">
                 <div className="text-content">
                     <h2>Characters</h2>
                     <div className="black-line mar-bottom-16"></div>
-                <div className="flex flex-wrap" style={{gap: '8px'}}>
+                <div className="flex flex-wrap al">
                     {characterElems}
                 </div>
-
-
                 </div>
-
             </div>
+            {/** End of characters **/}
         </Cont>
     )
 };

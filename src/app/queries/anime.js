@@ -3,6 +3,26 @@ export const ANIME_QUERY = `query ($id: Int! $type: MediaType) {
     Media(id:$id, type: $type) {
         id
         description
+        trailer {
+          id
+          site
+          thumbnail
+        }
+        characters {
+          edges {
+            node {
+              id
+              name {
+               full
+              }
+              age
+              image {
+                medium
+              }
+            }
+            
+          }
+        }
         coverImage {
             extraLarge
         } 

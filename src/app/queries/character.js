@@ -16,6 +16,25 @@ query ($id: Int) {
       }
       age
       favourites
+      media {
+       edges {
+         node {
+          title {
+            english
+          }
+          type
+          coverImage {
+            large
+          }
+          startDate {
+            year
+            month 
+            day
+          }
+          averageScore
+        }
+       }
+     }
     }
   }
 `;

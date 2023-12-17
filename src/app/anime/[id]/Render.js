@@ -8,6 +8,7 @@ import Rating from "@/app/components/Rating";
 import Genres from "@/app/components/genres";
 import ReactCommonmark from "react-commonmark";
 import EpisodeSection from "@/app/anime/components/EpisodeSection";
+import Character from "@/app/components/Character";
 
 const Cont = styled.div`
     position: relative;
@@ -62,6 +63,14 @@ const Anime = ({ anime }) => {
     const startDate = new Date(anime.startDate.year, anime.startDate.month, anime.startDate.day);
     const endDate = new Date(anime.endDate.year, anime.endDate.month, anime.endDate.day);
 
+    const characterElems = anime.characters.edges.map((character, index) => {
+       return (
+           <Character
+               key={index}
+               character = {character.node}
+           />
+       )
+    });
 
     return (
         <Cont colors = {COLORS}>
@@ -144,13 +153,14 @@ const Anime = ({ anime }) => {
                 <div className="text-content">
                     <h2>About This Anime</h2>
                     <div className="black-line mar-bottom-16"></div>
-                    <ReactCommonmark
-                        source = {anime.description}
-                    />
+                    {/*<ReactCommonmark*/}
+                    {/*    source = {anime.description}*/}
+                    {/*/>*/}
                 </div>
 
             </div>
 
+            {/** Episodes **/}
             <div className="content-box">
                 <div className="text-content">
                     <h2>Episodes</h2>
@@ -163,6 +173,20 @@ const Anime = ({ anime }) => {
                 </div>
 
             </div>
+            {/** End of episodes **/}
+
+            {/** Characters **/}
+            <div className="content-box">
+                <div className="text-content">
+                    <h2>Characters</h2>
+                    <div className="black-line mar-bottom-16"></div>
+                    <div className="flex flex-wrap al">
+                        {characterElems}
+                    </div>
+                </div>
+            </div>
+            {/** End of characters **/}
+
         </Cont>
     )
 };
