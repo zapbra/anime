@@ -18,10 +18,15 @@ const Cont = styled.div`
 const RENDER_ITERATOR = 20;
 
 const ContentSection = ({ data, title }) => {
+    // element to scroll to on pagination click
     const scrollRef = useRef(null);
+    // left navigation button
     const leftRef = useRef(null);
+    // right navigation button
     const rightRef = useRef(null);
+    // the current page
     const [page, setPage] = useState(1);
+    const [pages, setPages] = useState();
     // all fetched anime titles
     const [animeTitles, setAnimeTitles] = useState(data);
     const [renderLength, setRenderLength] = useState(RENDER_ITERATOR);
@@ -129,7 +134,7 @@ const ContentSection = ({ data, title }) => {
         <Cont colors={COLORS}>
             <section>
                 <h1 className="mar-bottom-16" ref={scrollRef}>
-                    {title} LIST
+                    {title} List
                 </h1>
                 <div className="section-content ">
                     {/* Title elements */}
@@ -137,6 +142,7 @@ const ContentSection = ({ data, title }) => {
                         {animeTitleElems}
                     </div>
                     {/* End of title elements */}
+
                     {/* Navigation */}
                     <div className="navigation">
                         <div ref={leftRef}>

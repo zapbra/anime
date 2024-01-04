@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Cont = styled.div`
     margin-right: 16px;
-    max-width: 160px;
+    max-width: 140px;
     margin-bottom: 16px;
     cursor: pointer;
     &:hover {
@@ -26,10 +26,10 @@ const AnimePreview = ({ title, img, id, type }) => {
                     alt={title}
                     src={img}
                     objectFit="cover"
-                    width={160}
-                    height={200}
+                    width={140}
+                    height={175}
                 />
-                <h5>{title}</h5>
+                <p className='bold'>{title}</p>
             </Cont>
         </Link>
     );
