@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
     const pathname = usePathname();
-
   return (
     <header className = 'navbar'>
         <Link href="/">
@@ -17,6 +16,11 @@ const Navbar = () => {
         </Link>
 
         <div className="flex align-center">
+            <Link href = "/" className='mar-right-16'>
+                <div className={pathname == "/" ? 'nav-link-selected' : 'nav-link'}>
+                    <h5>Home</h5>
+                </div>
+            </Link>
             <Link href = '/allanime' className='mar-right-16'>
                 <div className = {pathname == '/allanime' ? 'nav-link-selected' : 'nav-link'}>
                     <h5>Anime</h5>
@@ -30,7 +34,7 @@ const Navbar = () => {
             </Link>
 
             <Link href = '/allcharacters'>
-                <div className=" {pathname == '/allcharacters' ? 'nav-link-selected' : 'nav-link'}">
+                <div className={pathname == '/allcharacters' ? 'nav-link-selected' : 'nav-link'}>
                     <h5>Characters</h5>
                 </div>
             </Link>

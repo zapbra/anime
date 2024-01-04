@@ -11,7 +11,7 @@ const Cont = styled.div`
     cursor: pointer;
     &:hover {
         text-decoration: underline;
-        text-decoration-color: ${props=> props.colors.darkPurple};
+        text-decoration-color: ${(props) => props.colors.darkPurple};
         img {
             opacity: 0.9;
         }
@@ -29,7 +29,7 @@ const AnimePreview = ({ title, img, id, type }) => {
                     width={140}
                     height={175}
                 />
-                <p className='bold'>{title}</p>
+                <p className="bold">{title.english ?? title.native}</p>
             </Cont>
         </Link>
     );

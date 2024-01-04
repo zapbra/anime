@@ -358,3 +358,58 @@ p {
 .bold {
     font-weight: bold;
 }
+
+
+// Pagination
+
+.holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.pagination-icon {
+    padding-right: 4px;
+    padding-left: 4px;
+    margin-right: 8px;
+    margin-left: 8px;
+    &:hover {
+        cursor: pointer;
+        border-bottom: 1px solid black;
+        border-spacing: 4px;
+        font-weight: bold;
+    }
+}
+.selected {
+    border-bottom: 1px solid black;
+    border-spacing: 4px;
+    &:hover {
+        cursor: default;
+        font-weight: 400;
+    }
+}
+.contrast {
+    &:hover {
+        color: $green;
+        cursor: pointer;
+    }
+}
+.sort-box {
+    border: 2px solid $green;
+    padding: 8px 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+.active-sort-box {
+    background-color: $green;
+    cursor: default;
+    outline: 2px solid $green;
+    outline-offset: 3px;
+    border-radius: 16px;
+    h5 {
+        color: #fff;
+    }
+}
+
+// End of pagination
