@@ -17,7 +17,7 @@ const Cont = styled.div`
 `;
 
 // iterates the render increase/offset
-const RENDER_ITERATOR = 25;
+const RENDER_ITERATOR = 50;
 
 const ContentSection = ({ data, title, pageInfo, type }) => {
     // total number of possible pages to fetch
@@ -38,21 +38,39 @@ const ContentSection = ({ data, title, pageInfo, type }) => {
     const renderPreviews = () => {
         // range of element to render
         const renderLength = page * RENDER_ITERATOR;
-        if (renderLength > animeTitles) {
-        }
 
         const animeArr = [];
-        // renders up to renderLength amount minus RENDER_ITERATOR offset
-        for (let i = renderLength - RENDER_ITERATOR; i < renderLength; i++) {
-            animeArr.push(
-                <AnimePreview
-                    title={animeTitles[i].title}
-                    img={animeTitles[i].coverImage.large}
-                    id={animeTitles[i].id}
-                    type={title.toLowerCase()}
-                />,
-            );
+        // just render every anime if it's less than the RENDER_ITERATOR (25
+        if (renderLength > animeTitles.length) {
+            for (let i = 0; i < animeTitles.length; i++) {
+                animeArr.push(
+                    <AnimePreview
+                        title={animeTitles[i].title}
+                        img={animeTitles[i].coverImage.large}
+                        id={animeTitles[i].id}
+                        type={title.toLowerCase()}
+                    />,
+                );
+            } // else render them by page offset
+        } else {
+            for (
+                let i = renderLength - RENDER_ITERATOR;
+                i < renderLength;
+                i++
+            ) {
+                animeArr.push(
+                    <AnimePreview
+                        title={animeTitles[i].title}
+                        img={animeTitles[i].coverImage.large}
+                        id={animeTitles[i].id}
+                        type={title.toLowerCase()}
+                    />,
+                );
+            }
         }
+
+        // renders up to renderLength amount minus RENDER_ITERATOR offset
+
         return animeArr;
     };
     // anime title elements
@@ -93,6 +111,8 @@ const ContentSection = ({ data, title, pageInfo, type }) => {
 
     useEffect(() => {
         setAnimeTitles(data);
+        setPage(1);
+        setPages(pageInfo.total / (pageInfo.perPage / 2));
     }, [data]);
 
     return (
@@ -106,6 +126,9 @@ const ContentSection = ({ data, title, pageInfo, type }) => {
                     <div className="flex flex-wrap space-around content-holder">
                         {animeTitleElems}
                     </div>
+                    {animeTitles.length == 0 && (
+                        <p>Nothing here... try another search</p>
+                    )}
                     {/* End of title elements */}
 
                     {/* Navigation */}
@@ -117,21 +140,6 @@ const ContentSection = ({ data, title, pageInfo, type }) => {
                                 setPage={setPage}
                             />
                         </div>
-
-                        {/*<div ref={leftRef}>*/}
-                        {/*    <BsChevronDoubleLeft*/}
-                        {/*        ref={leftRef}*/}
-                        {/*        onClick={() => shiftPage("left")}*/}
-                        {/*        className="icon-med icon-purple icon-inactive"*/}
-                        {/*    />*/}
-                        {/*</div>*/}
-                        {/*<h4 className="grey">{page}</h4>*/}
-                        {/*<div ref={rightRef}>*/}
-                        {/*    <BsChevronDoubleRight*/}
-                        {/*        onClick={() => shiftPage("right")}*/}
-                        {/*        className="icon-med icon-purple"*/}
-                        {/*    />*/}
-                        {/*</div>*/}
                     </div>
                     {/* End of Navigation */}
                 </div>

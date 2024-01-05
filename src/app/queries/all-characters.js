@@ -1,7 +1,11 @@
 export const ALL_CHARACTERS_QUERY = `
-query  {
-    Page {
-      characters {
+query ($page: Int, $query: String) {
+    Page (page: $page) {
+    pageInfo {
+        total
+        perPage
+    }
+      characters (search: $query) {
         id
         name {
           full

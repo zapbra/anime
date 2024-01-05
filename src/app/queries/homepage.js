@@ -1,12 +1,14 @@
-export const ALL_SEARCH_QUERY = `
-query ($query: String) {
-    AnimeSearch: Page {
+export const HOMEPAGE_QUERY = `query ($query: String, $results: Int) {
+    AnimeSearch: Page (perPage: $results) {
       pageInfo {
         total
         perPage
       }
       media(search: $query, type: ANIME, sort: POPULARITY_DESC) {
         id
+        description
+        averageScore
+        favourites
         title {
           english
         }
@@ -15,12 +17,15 @@ query ($query: String) {
         }
       }
     }
-    MangaSearch: Page {
+    MangaSearch: Page (perPage: $results){
       pageInfo {
         total 
         perPage
       }
       media(search: $query, type: MANGA, sort: POPULARITY_DESC) {
+      description
+      averageScore
+      favourites
         id
         title {
           english
@@ -30,20 +35,6 @@ query ($query: String) {
         }
       }
     }
-    CharacterSearch: Page {
-      pageInfo {
-        total
-        perPage
-      }
-      characters(search: $query, sort:FAVOURITES_DESC) {
-        id
-        name {
-          full
-        }
-        image {
-          large
-        }
-      }
-    }
-  }
-`;
+    
+    
+  }`;

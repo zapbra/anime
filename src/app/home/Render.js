@@ -6,7 +6,7 @@ import COLORS from "../data/colors";
 import ContentSection from "../components/ContentSection";
 import CharacterPreview from "../components/ContentSection/CharacterPreview";
 import Search from "@/app/components/search";
-import {globalSearch} from "@/app/lib/fetching";
+import { globalSearch } from "@/app/lib/fetching";
 
 const Cont = styled.div`
     .navigation {
@@ -21,29 +21,13 @@ const Cont = styled.div`
 const Render = ({ data }) => {
     const executeSearch = async (searchText) => {
         const result = await globalSearch(searchText);
-
-        console.log('result');
-        console.log(result);
     };
 
+    console.log("data");
+    console.log(data);
     return (
         <Cont colors={COLORS}>
-            <Search
-                executeSearch = {executeSearch}
-            />
-            {" "}
-            <ContentSection
-                title={"ANIME"}
-                data={data.data.AnimeSearch.media}
-            />{" "}
-            <ContentSection
-                title={"MANGA"}
-                data={data.data.MangaSearch.media}
-            />
-            <CharacterPreview
-                title={"CHARACTER"}
-                data={data.data.CharacterSearch.characters}
-            />
+            <Search executeSearch={executeSearch} />{" "}
         </Cont>
     );
 };

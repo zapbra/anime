@@ -1,19 +1,22 @@
 "use client";
-import { useState } from "react";
-import CharacterPreview from "@/app/components/ContentSection/CharacterPreview";
+import ContentSection from "@/app/components/ContentSection";
 import Search from "@/app/components/search";
-import { getCharactersBySearch } from "@/app/lib/fetching";
+import { useState } from "react";
+import { getAnimeMangaBySearch } from "@/app/lib/fetching";
 
-const Render = ({ dataFetch }) => {
+const Render = ({ dataFetch, type, title }) => {
     const [data, setData] = useState(dataFetch);
+
     const [text, setText] = useState("");
 
-    const searchFunction = async () => {
-        const charactersFetch = await getCharactersBySearch({
+    const searchFunction = async (text) => {
+        const animeMangasFetch = await getAnimeMangaBySearch({
             page: 1,
             query: text,
+            type: type,
         });
-        setData(charactersFetch.data.Page);
+
+        setData(animeMangasFetch.data.Page);
         return true;
     };
 
@@ -24,10 +27,12 @@ const Render = ({ dataFetch }) => {
                 setText={setText}
                 searchFunction={searchFunction}
             />
-            <CharacterPreview
-                data={data.characters}
+
+            <ContentSection
+                title={title}
+                data={data.media}
                 pageInfo={data.pageInfo}
-                title="Characters"
+                type={type}
             />
         </div>
     );

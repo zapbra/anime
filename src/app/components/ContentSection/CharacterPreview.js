@@ -4,140 +4,142 @@ import styled from "styled-components";
 import { BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
 import COLORS from "@/app/data/colors";
 import AnimePreview from "./AnimePreview";
+import Pagination from "@/app/components/navigation/Pagination";
+import {
+    getAnimeMangaBySearch,
+    getCharactersBySearch,
+} from "@/app/lib/fetching";
 
 const Cont = styled.div`
     margin-bottom: 128px;
     .navigation {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     }
 `;
 
 // iterates the render increase/offset
-const RENDER_ITERATOR = 20;
+const RENDER_ITERATOR = 50;
 
-const ContentSection = ({ data, title }) => {
+const CharacterPreview = ({ data, title, pageInfo }) => {
+    // total number of possible pages to fetch
+    // element to scroll to on pagination click
+    const scrollRef = useRef(null);
+    // page number for fetching titles
+    const [pageFetch, setPageFetch] = useState(1);
+    // left navigation button
     const leftRef = useRef(null);
+    // right navigation button
     const rightRef = useRef(null);
+    // the current page
     const [page, setPage] = useState(1);
+    const [pages, setPages] = useState(pageInfo.total / pageInfo.perPage);
     // all fetched anime titles
     const [animeTitles, setAnimeTitles] = useState(data);
-    const [renderLength, setRenderLength] = useState(RENDER_ITERATOR);
-    console.log('chars');
-    console.log(data);
-    // returns an array of all the objects to render (character, anime, etc)
-    // returns the indexes based on render_iterator offest. Ex. 25-50
+
     const renderPreviews = () => {
+        // range of element to render
+        const renderLength = page * RENDER_ITERATOR;
+
         const animeArr = [];
+        // just render every anime if it's less than the RENDER_ITERATOR (25
+        if (renderLength > animeTitles.length) {
+            for (let i = 0; i < animeTitles.length; i++) {
+                animeArr.push(
+                    <AnimePreview
+                        title={animeTitles[i].name.full}
+                        img={animeTitles[i].image.large}
+                        id={animeTitles[i].id}
+                        type="character"
+                    />,
+                );
+            } // else render them by page offset
+        } else {
+            for (
+                let i = renderLength - RENDER_ITERATOR;
+                i < renderLength;
+                i++
+            ) {
+                animeArr.push(
+                    <AnimePreview
+                        title={animeTitles[i].name.full}
+                        img={animeTitles[i].image.large}
+                        id={animeTitles[i].id}
+                        type="character"
+                    />,
+                );
+            }
+        }
 
         // renders up to renderLength amount minus RENDER_ITERATOR offset
-        for (let i = renderLength - RENDER_ITERATOR; i < renderLength; i++) {
-            console.log('hello');
 
-            animeArr.push(
-                <AnimePreview
-                    title={
-                        animeTitles[i].name.full
-                    }
-                    img={animeTitles[i].image.large}
-                    id = {animeTitles[i].id}
-                    type = 'character'
-                />
-            );
-        }
         return animeArr;
     };
     // anime title elements
     const [animeTitleElems, setAnimeTitleElems] = useState(renderPreviews);
 
+    // Fetches more mangas and updates the anime titles
+    const fetchAndUpdateTitles = async () => {
+        // fetch the mangas
+        const data = await getCharactersBySearch({
+            query: null,
+            page: pageFetch + 1,
+        });
+        const characters = data.data.Page.characters;
+        // updating the anime titles will call use effect to update the anime title elements
+        setAnimeTitles((prev) => {
+            return [...prev, ...characters];
+        });
+
+        setPageFetch((prev) => {
+            return prev + 1;
+        });
+    };
+
+    useEffect(() => {
+        // if page will extend over local titles, then fetch more
+        if (page * RENDER_ITERATOR > animeTitles.length) {
+            fetchAndUpdateTitles();
+            // render previews directly if fetch not required
+        } else {
+            setAnimeTitleElems(renderPreviews());
+        }
+    }, [page]);
+
     useEffect(() => {
         setAnimeTitleElems(renderPreviews);
-    }, [renderLength]);
+    }, [animeTitles]);
 
-    console.log("data");
-    console.log(data);
-
-    const shiftPage = (dir) => {
-        console.log("???");
-        let curRenderLength;
-        // next page
-        if (dir == "right") {
-            // if render offset greater than anime length
-            if (renderLength + RENDER_ITERATOR > animeTitles.length) {
-                curRenderLength = animeTitles.length;
-                // de-activate click right button
-                rightRef.current.firstElementChild.classList.add(
-                    "icon-inactive"
-                );
-                if (curRenderLength > renderLength) setPage(page + 1);
-                // if full render
-            } else {
-                setPage(page + 1);
-                curRenderLength = renderLength + RENDER_ITERATOR;
-                // check if left button needs to be set active
-                if (
-                    leftRef.current.firstElementChild.classList.contains(
-                        "icon-inactive"
-                    )
-                ) {
-                    leftRef.current.firstElementChild.classList.remove(
-                        "icon-inactive"
-                    );
-                }
-            } // prev page
-        } else {
-            // render offset too far left
-            if (renderLength - RENDER_ITERATOR < RENDER_ITERATOR) {
-                curRenderLength = RENDER_ITERATOR;
-                // de-activate click left button
-                leftRef.current.firstElementChild.classList.add(
-                    "icon-inactive"
-                );
-                if (curRenderLength < renderLength) setPage(page - 1);
-                // full left render
-            } else {
-                setPage(page - 1);
-                curRenderLength = renderLength - RENDER_ITERATOR;
-                // check if right button needs to be set active
-                if (
-                    rightRef.current.firstElementChild.classList.contains(
-                        "icon-inactive"
-                    )
-                ) {
-                    rightRef.current.firstElementChild.classList.remove(
-                        "icon-inactive"
-                    );
-                }
-            }
-        }
-        setRenderLength(curRenderLength);
-    };
+    useEffect(() => {
+        setAnimeTitles(data);
+        setPage(1);
+        setPages(pageInfo.total / (pageInfo.perPage / 2));
+    }, [data]);
 
     return (
         <Cont colors={COLORS}>
             <section>
-                <h1 className="mar-bottom-16">{title} LIST</h1>
+                <h1 className="mar-bottom-16" ref={scrollRef}>
+                    {title} List
+                </h1>
                 <div className="section-content ">
                     {/* Title elements */}
-                    <div className="flex flex-wrap space-around ">
+                    <div className="flex flex-wrap space-around content-holder">
                         {animeTitleElems}
                     </div>
+                    {animeTitles.length == 0 && (
+                        <p>Nothing here... try another search</p>
+                    )}
                     {/* End of title elements */}
+
                     {/* Navigation */}
                     <div className="navigation">
-                        <div ref={leftRef}>
-                            <BsChevronDoubleLeft
-                                ref={leftRef}
-                                onClick={() => shiftPage("left")}
-                                className="icon-med icon-purple icon-inactive"
-                            />
-                        </div>
-                        <h4 className="grey">{page}</h4>
-                        <div ref={rightRef}>
-                            <BsChevronDoubleRight
-                                onClick={() => shiftPage("right")}
-                                className="icon-med icon-purple"
+                        <div>
+                            <Pagination
+                                pages={pages}
+                                page={page}
+                                setPage={setPage}
                             />
                         </div>
                     </div>
@@ -148,4 +150,4 @@ const ContentSection = ({ data, title }) => {
     );
 };
 
-export default ContentSection;
+export default CharacterPreview;

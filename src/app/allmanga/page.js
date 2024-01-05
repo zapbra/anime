@@ -1,4 +1,5 @@
 import Render from "./Render";
+import AnimeMangaRender from "@/app/components/AnimeMangaRender";
 import { getAnimeMangaBySearch } from "@/app/lib/fetching";
 
 const AllManga = async () => {
@@ -8,7 +9,13 @@ const AllManga = async () => {
         type: "MANGA",
     });
 
-    return <Render dataFetch={data.data.Page} />;
+    return (
+        <AnimeMangaRender
+            dataFetch={data.data.Page}
+            type="MANGA"
+            title="Manga"
+        />
+    );
 };
 
 export default AllManga;

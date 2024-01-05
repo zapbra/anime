@@ -1,16 +1,22 @@
-import Render from './Render';
-import {getAnimeBySearch} from "@/app/lib/fetching";
-
+import Render from "./Render";
+import { getAnimeBySearch, getAnimeMangaBySearch } from "@/app/lib/fetching";
+import AnimeMangaRender from "@/app/components/AnimeMangaRender";
 
 const AllAnime = async () => {
     // fetches a list of the most popular animes with empty search query
-    const data = await getAnimeBySearch({query: null});
+    const data = await getAnimeMangaBySearch({
+        query: null,
+        page: 1,
+        type: "ANIME",
+    });
 
     return (
-        <Render
-            anime = {data.data.AnimeSearch.media}
+        <AnimeMangaRender
+            dataFetch={data.data.Page}
+            type="ANIME"
+            title="Anime"
         />
-    )
+    );
 };
 
 export default AllAnime;
