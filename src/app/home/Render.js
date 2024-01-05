@@ -7,6 +7,7 @@ import ContentSection from "../components/ContentSection";
 import CharacterPreview from "../components/ContentSection/CharacterPreview";
 import Search from "@/app/components/search";
 import { globalSearch } from "@/app/lib/fetching";
+import LargePreviewSection from "@/app/components/LargePreviewSection";
 
 const Cont = styled.div`
     .navigation {
@@ -19,6 +20,8 @@ const Cont = styled.div`
 // iterates the render increase/offset
 
 const Render = ({ data }) => {
+    console.log("data");
+    console.log(data);
     const executeSearch = async (searchText) => {
         const result = await globalSearch(searchText);
     };
@@ -28,6 +31,10 @@ const Render = ({ data }) => {
     return (
         <Cont colors={COLORS}>
             <Search executeSearch={executeSearch} />{" "}
+            <LargePreviewSection
+                title="Popular Anime"
+                mediaList={data.data.AnimeSearch.media}
+            />
         </Cont>
     );
 };

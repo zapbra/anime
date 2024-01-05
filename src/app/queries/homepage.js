@@ -23,16 +23,16 @@ export const HOMEPAGE_QUERY = `query ($query: String, $results: Int) {
         perPage
       }
       media(search: $query, type: MANGA, sort: POPULARITY_DESC) {
-      description
-      averageScore
-      favourites
-        id
-        title {
-          english
-        }
-        coverImage {
-          large
-        }
+          description
+          averageScore
+          favourites
+            id
+            title {
+              english
+            }
+            coverImage {
+              large
+            }
       }
     }
     

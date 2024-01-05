@@ -39,6 +39,8 @@ input {
     }
 }
 
+
+
 .black-line {
     width: 100%;
     height: 1px;
@@ -283,6 +285,19 @@ p {
     margin-right: 32px;
 }
 
+.mar-top-16 {
+    margin-top: 16px;
+}
+
+.px-16 {
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.py-16 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
 .padding-bottom-32 {
     padding-bottom: 32px;
 }
